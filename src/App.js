@@ -6,12 +6,27 @@ function App() {
   const [role, setRole] = useState("dev");
   const [employees, setEmployees] = useState(
     [
-      {name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
-      {name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
-      {name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
-      {name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:1 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:2 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:3 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:4 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:5 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:6 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:7 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
+      {id:8 ,name: "Christian", role: "Intern", src: "https://images.pexels.com/photos/17016912/pexels-photo-17016912/free-photo-of-canelo.jpeg"},
     ]
   );
+
+  function updateEmployee(id, newName, newRole) {
+    const updatedEmployees = employees.map((employee) => {
+      if (id == employee.id) {
+        return { ...employee, name: newName, role: newRole };
+      } 
+
+      return employee;
+    });
+    setEmployees(updatedEmployees);
+  }
   const showEmployees = true;
   return (
     <div className="App">
@@ -27,11 +42,13 @@ function App() {
             {employees.map((employee) => { 
               return (
                 <Employee
-                    key={uuidv4()}
-                    name={employee.name}
-                    role={employee.role}
-                    src={employee.src}
-                  />
+                  key={uuidv4()}
+                  name={employee.name}
+                  role={employee.role}
+                  src={employee.src}
+                  id={employee.id}
+                  updateEmployee = {updateEmployee}
+                />
               );
             })}
           </div>
