@@ -2,9 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function EditEmployee(data) {
-    const [name, setName] = useState(data.name);
-    const [role, setRole] = useState(data.role);
+function AddEmployee(data) {
+    const [name, setName] = useState('');
+    const [role, setRole] = useState('');
+    const [img, setImg] = useState('');
 
     const [show, setShow] = useState(false);
 
@@ -13,7 +14,7 @@ function EditEmployee(data) {
 
     return (
         <>
-            <button variant="primary" onClick={handleShow} className="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Edit</button>   
+            <button variant="primary" onClick={handleShow} className="block mt-3 mx-auto px-5 py-2 text-sm text-white font-semibold rounded-md border border-purple-200 bg-purple-700 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Add Employee</button>   
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -21,7 +22,7 @@ function EditEmployee(data) {
                 keyboard={false}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Update Employee</Modal.Title>
+                    <Modal.Title>Add Employee</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form
@@ -29,8 +30,12 @@ function EditEmployee(data) {
                         className="w-full max-w-sm"
                         onSubmit={(e) => {
                             e.preventDefault();
-                            data.updateEmployee(data.id, name, role);
+                            data.newEmployee(name, role, img);
+                            setName("");
+                            setRole("");
+                            setImg("");
                             handleClose();
+                           
                         }}
                     >
                         <div className="md:flex md:items-center mb-6">
@@ -45,6 +50,7 @@ function EditEmployee(data) {
                                     id="name"
                                     type="text"
                                     value={name}
+                                    placeholder='John Doe'
                                     onChange={(e) => {setName(e.target.value)}}
                                 />
                             </div>
@@ -64,7 +70,28 @@ function EditEmployee(data) {
                                     id="role"
                                     type="text"
                                     value={role}
+                                    placeholder='Intern'
                                     onChange={(e) => {setRole(e.target.value)}}
+                                />
+                            </div>
+                        </div>
+                        <div className="md:flex md:items-center mb-6">
+                            <div className="md:w-1/3">
+                                <label
+                                    className="block text-gray-500 md:text-right mb-1 md:mb-0 pr-4"
+                                    htmlFor="img">
+                                    Image URL
+                                </label>
+                            </div>
+                            <div
+                                className="md:w-2/3">
+                                <input
+                                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                                    id="img"
+                                    type="text"
+                                    value={img}
+                                    placeholder='www.google.com'
+                                    onChange={(e) => {setImg(e.target.value)}}
                                 />
                             </div>
                         </div>
@@ -78,7 +105,7 @@ function EditEmployee(data) {
                     </button>
                     <button
                         className="bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded" form="editModal">
-                        Update
+                        Add
                     </button>
                 </Modal.Footer>
             </Modal> 
@@ -86,4 +113,4 @@ function EditEmployee(data) {
     );
 }
 
-export default EditEmployee;
+export default AddEmployee;

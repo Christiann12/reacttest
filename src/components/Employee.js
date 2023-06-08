@@ -1,3 +1,4 @@
+
 import EditEmployee from "./EditEmployee";
 
 function Employee(props) {
@@ -13,9 +14,11 @@ function Employee(props) {
                     {props.role ? props.role : "No Role"} 
                 </p>
                 </div>
-                <EditEmployee props={props} updateEmployee={props.updateEmployee} />                
+                
+                {props.editEmployee}
             </div>
         </div>
+               
     )
 }
 
