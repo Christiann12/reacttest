@@ -7,8 +7,8 @@ function App() {
     <div className="App">
       {showEmployees ? (
         <>
-          <Employee />
-          <Employee />
+          <Employee name="Christian" role="Intern"/>
+          <Employee name="Paul"/>
         </>
       )
       :(
