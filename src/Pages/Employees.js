@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import EditEmployee from "../components/EditEmployee";
 
 function Employees() {
-	const [role, setRole] = useState("dev");
+
 	const [employees, setEmployees] = useState([
 		{
 			id: 1,
